@@ -28,7 +28,7 @@ class MapSearchController extends Controller {
     }
 
     public function actionObjects() {
-        return GeoObjectService::getGeoJsonStringByBBox(Yii::$app->request->get());
+        return GeoObjectService::getGeoJsonStringByBBox(Yii::$app->request->get(), Yii::$app->request->get('countOnly'));
         return $this->renderPartial('objects');
     }
 

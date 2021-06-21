@@ -6,7 +6,7 @@ use app\modules\contrib\helper\PostgisHelper;
 use yii\db\Query;
 
 class GeoObjectService {
-    public static function getGeoJsonStringByBBox($params) {
+    public static function getGeoJsonStringByBBox($params, $countOnly=false) {
         $model = new ModelGeoObjectQueryInBBox();
         $model->load($params, '');
         if ($model->validate()) {
@@ -22,7 +22,7 @@ class GeoObjectService {
                     ->where("st_contains($envelope, geom)");
                 return json_encode([
                     'count' => $query->count(),
-                    'data' => $query->all()
+                    'data' => $countOnly ? [] : $query->all()
                 ]);
             }
         }

@@ -72,13 +72,10 @@ GxLeafletAsset::register($this);
 
     function getMapParams() {
         let obj = {
-            center: APP.map.getCenter(),
             northEast: APP.map.getBounds()._northEast,
             southWest: APP.map.getBounds()._southWest
         }
         return jQuery.param({
-            centerLat: obj.center.lat,
-            centerLng: obj.center.lng,
             northEastLat: obj.northEast.lat,
             northEastLng: obj.northEast.lng,
             southWestLat: obj.southWest.lat,

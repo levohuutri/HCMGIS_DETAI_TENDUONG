@@ -6,7 +6,7 @@ namespace app\modules\cms;
 class CMSConfig
 {
     public static $CONFIG = [
-        'siteName' => 'HCMGIS 3D Viewer',
+        'siteName' => 'HCMGIS',
         'adminSidebar' => [
             'system' => [
                 'name' => 'Hệ thống',
@@ -19,7 +19,7 @@ class CMSConfig
                 'url' => 'cms/user'
             ],
             'pointcloud' => [
-                'name' => '3D Viewer',
+                'name' => 'HCMGIS',
                 'icon' => 'icon-grid52',
                 'url' => 'cms/point-cloud'
             ]

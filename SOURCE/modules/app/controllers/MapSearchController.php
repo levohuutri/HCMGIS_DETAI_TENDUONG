@@ -3,6 +3,8 @@
 namespace app\modules\app\controllers;
 
 use app\modules\app\APPConfig;
+use app\modules\app\models\ModelGeoObjectQueryInBBox;
+use app\modules\app\services\GeoObjectService;
 use app\modules\cms\models\Map;
 use app\modules\cms\services\AuthService;
 use app\modules\cms\services\FileService;
@@ -26,6 +28,7 @@ class MapSearchController extends Controller {
     }
 
     public function actionObjects() {
+        return GeoObjectService::getGeoJsonStringByBBox(Yii::$app->request->get());
         return $this->renderPartial('objects');
     }
 

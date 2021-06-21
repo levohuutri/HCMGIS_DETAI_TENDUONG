@@ -23,7 +23,8 @@ class MapSearchController extends Controller {
     }
 
     public function actionObjectsSummary() {
-        return json_encode(GeoObjectService::getObjectsSummaryByBBox(Yii::$app->request->get()));
+        //return json_encode(GeoObjectService::getObjectsSummaryByBBox(Yii::$app->request->get()));
+        return $this->renderPartial('objects', ['model' => GeoObjectService::getObjectsSummaryByBBox(Yii::$app->request->get())]);
     }
 
     public function actionKeywords() {

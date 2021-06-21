@@ -12,7 +12,7 @@ class GeoObjectConfig {
             'props' => ['id' => 'gid', 'name' => 'tenduong', 'geom' => 'geom']
         ],
         'obj_diemgiatriyte' => [
-            'sqlSelect' => 'gid as id, st_asgeojson(geom) as geojson, tencsyte as name', 
+            'sqlSelect' => 'gid as id, st_asgeojson(geom) as geojson, tencsyt as name', 
             'props' => ['id' => 'gid', 'name' => 'tencsyte', 'geom' => 'geom']
         ],
         'obj_diemgiatrigiaoduc' => [

@@ -2,18 +2,9 @@
 
 namespace app\modules\app\controllers;
 
-use app\modules\app\APPConfig;
-use app\modules\app\models\ModelGeoObjectQueryInBBox;
 use app\modules\app\services\GeoObjectService;
-use app\modules\cms\models\Map;
-use app\modules\cms\services\AuthService;
-use app\modules\cms\services\FileService;
-use app\modules\cms\services\MapService;
-use app\modules\cms\services\PointCloudService;
-use app\modules\cms\services\SiteService;
 use Yii;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
 
 class MapSearchController extends Controller {
     public $enableCsrfValidation = false;
@@ -28,8 +19,11 @@ class MapSearchController extends Controller {
     }
 
     public function actionObjects() {
-        return GeoObjectService::getGeoJsonStringByBBox(Yii::$app->request->get(), Yii::$app->request->get('countOnly'));
-        return $this->renderPartial('objects');
+        return json_encode(GeoObjectService::geObjectsByBBox(Yii::$app->request->get()));
+    }
+
+    public function actionObjectsSummary() {
+        return json_encode(GeoObjectService::getObjectsSummaryByBBox(Yii::$app->request->get()));
     }
 
     public function actionKeywords() {

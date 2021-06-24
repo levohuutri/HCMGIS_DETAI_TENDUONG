@@ -9,18 +9,29 @@ GxJqueryAsset::register($this);
 GxLeafletAsset::register($this);
 ?>
 <script>
-    var APP = {homeUrl: "<?= Yii::$app->homeUrl ?>"};
+    var APP = {
+        homeUrl: "<?= Yii::$app->homeUrl ?>",
+        events: {
+            onMapMoveEnd: "onMapMoveEnd",
+            onMapZoomEnd: "onMapZoomEnd"
+        }
+    };
 </script>
 
 <div class="col-md-12">
     <div class='row'>
         <div class='col-md-4'>
-            <div class="row" id="objects" style="height: 50%"></div>
+            <div class="row" style="height: 50%">
+                <div class="col-md-12">
+                    <div class="col-md-12" style="font-weight: bold"> THỐNG KẾ SỐ LƯỢNG ĐỐI TƯỢNG TRONG KHU VỰC</div>
+                    <div class="col-md-12" id="objects"></div>
+                </div>
+            </div>
             <div class="row" id="keywords" style="height: 50%"></div>
         </div>
         <div class="col-md-8">
             <div id="map">
-                
+
             </div>
         </div>
     </div>
@@ -30,6 +41,7 @@ GxLeafletAsset::register($this);
         initElements();
         initEvents();
     });
+
     function loadAjaxToDiv(selector, url) {
         let $ele = $(selector);
         $.ajax({
@@ -60,7 +72,7 @@ GxLeafletAsset::register($this);
 
     function loadObjects() {
         let param = getMapParams();
-        let url = APP.homeUrl + "app/map-search/objects?" + param;
+        let url = APP.homeUrl + "app/map-search/objects-summary?" + param;
         loadAjaxToDiv("#objects", url);
     }
 

@@ -44,6 +44,7 @@ class GeoObjectService {
             foreach (GeoObjectConfig::$GeoObjects as $geoCode => $geoProps) {
                 $query = new Query();
                 $result[$geoCode] = [];
+                $result[$geoCode]['code'] = $geoCode;
                 $result[$geoCode]['count'] = $query->from($geoCode)->select($geoProps['sqlSelect'])->where("st_contains($envelope, geom)")->count();
                 $result[$geoCode]['props'] = GeoType::find()->where(['code' => $geoCode])->asArray()->one();
             }

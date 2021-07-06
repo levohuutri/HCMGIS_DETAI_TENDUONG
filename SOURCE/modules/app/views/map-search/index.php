@@ -20,16 +20,22 @@ GxLeafletAsset::register($this);
 
 <div class="col-md-12">
     <div class='row'>
-        <div class='col-md-4'>
+        <div class='col-md-3'>
             <div class="row" style="height: 50%">
                 <div class="col-md-12">
-                    <div class="col-md-12" style="font-weight: bold"> THỐNG KẾ SỐ LƯỢNG ĐỐI TƯỢNG TRONG KHU VỰC</div>
+                    <div class="col-md-12" style="font-weight: bold"><h3>THỐNG KẾ ĐỐI TƯỢNG TRONG KHU VỰC</h3></div>
                     <div class="col-md-12" id="objects"></div>
                 </div>
             </div>
             <div class="row" id="keywords" style="height: 50%"></div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-3">
+            <div class="col-md-12" style="font-weight: bold"><h3>THÔNG TIN CHI TIẾT</h3></div>
+            <div class="col-md-12" id="objects-detail">
+                Chưa chọn loại đối tượng
+            </div>
+        </div>
+        <div class="col-md-6">
             <div id="map">
 
             </div>
@@ -54,9 +60,8 @@ GxLeafletAsset::register($this);
 
     function initElements() {
         loadAjaxToDiv("#map", APP.homeUrl + "app/map-search/map");
-        loadAjaxToDiv("#objects", APP.homeUrl + "app/map-search/objects");
-        loadAjaxToDiv("#keywords", APP.homeUrl + "app/map-search/keywords");
     }
+    
 
     function initEvents() {
         $(document).on("onMapMoveEnd", function() {
@@ -68,6 +73,10 @@ GxLeafletAsset::register($this);
             loadObjects();
             loadKeywords();
         })
+        
+        $(document).on("onObjectsSummaryClicked", function() {
+            console.log(APP.selectedObjectsSummaryCode);
+        });
     }
 
     function loadObjects() {
@@ -94,4 +103,9 @@ GxLeafletAsset::register($this);
             southWestLng: obj.southWest.lng,
         })
     }
+
+    $(document).on("onMapInited", function() {
+        loadObjects();
+        loadKeywords();
+    })
 </script>

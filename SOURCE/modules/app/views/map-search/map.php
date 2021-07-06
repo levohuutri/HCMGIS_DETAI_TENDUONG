@@ -35,6 +35,7 @@
         APP.map.on("zoomend", function() {
             $(document).trigger("onMapZoomEnd");
         })
+        $(document).trigger("onMapInited");
     }
 
     $(document).ready(function() {
